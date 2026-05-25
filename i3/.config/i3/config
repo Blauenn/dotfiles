@@ -1,0 +1,199 @@
+# Screen
+exec_always --no-startup-id xrandr --output DP-2 --mode 1920x1080 --rate 200
+
+# Modifier key
+set $mod Mod4
+
+# Gaps between windows
+gaps inner 10
+gaps outer 2
+
+# No title bar
+for_window [class=".*"] border pixel 4
+
+# Wallpaper
+# yuri! yay!
+exec_always --no-startup-id feh --bg-fill $HOME/.config/i3/wallpaper/misua-casual.jpg
+
+# === THEME CORE ===
+
+# Main palette (Based of misua-rabbits.jpg)
+set $main #ec4194
+set $accent #b5c731
+set $neutral #4a99fe
+set $dark #2a2a33
+set $whiteish #e6e6e6
+set $urgent #ffd54a
+
+# focused (ACTIVE)
+client.focused          $main $main $whiteish $main $main
+# unfocused (INACTIVE)
+client.unfocused        $dark $dark $neutral $dark $dark
+# focused but inactive workspace
+client.focused_inactive $dark $dark $neutral $dark $dark
+# urgent (ATTENTION)
+client.urgent           $urgent $urgent $whiteish $urgent $urgent
+
+# Main font
+font pango:monospace 10
+
+# Autostart
+exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id nm-applet
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id picom --config ~/.config/picom/picom.conf
+
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# move tiling windows via drag & drop by left-clicking into the title bar,
+# or left-clicking anywhere into the window while holding the floating modifier.
+tiling_drag modifier titlebar
+
+# Master
+bindsym $mod+Shift+q		kill
+bindsym $mod+Shift+space	floating toggle
+
+# Turn off screen after 2 minutes of inactivity
+exec_always --no-startup-id xset dpms 0 0 120
+exec_always --no-startup-id xset s off
+
+# Auto start applications
+exec --no-startup-id kitty bash -lc "fastfetch; exec zsh"
+exec --no-startup-id anydesk
+exec --no-startup-id qbittorrent
+
+# Apps
+bindsym $mod+e exec nautilus
+bindsym $mod+Return exec kitty
+bindsym $mod+space exec rofi -show drun
+bindsym $mod+n exec zen-browser
+bindsym $mod+Shift+n exec zen-browser --private-window
+bindsym $mod+b exec helium-browser
+bindsym $mod+Shift+b exec helium-browser --incognito
+
+# Screenshots
+bindsym $mod+Shift+F3 exec spectacle -b -n
+bindsym $mod+Shift+F4 exec spectacle -r -b -n
+
+# Change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split in horizontal orientation
+bindsym $mod+h split h
+# Split in vertical orientation
+bindsym $mod+v split v
+
+# Enter fullscreen mode
+bindsym $mod+Shift+f fullscreen toggle
+
+# Change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+set $ws11 "11"
+set $ws12 "12"
+set $ws13 "13"
+
+# Switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+bindsym $mod+Ctrl+1 workspace $ws11
+bindsym $mod+Ctrl+2 workspace $ws12
+bindsym $mod+Ctrl+3 workspace $ws13
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# Assigns to workspace
+assign [class="xfreerdp"] 12
+assign [class="Virt-manager"] 1
+assign [class="Helium"] 2
+# assign [class="org.gnome.Nautilus"] 3
+assign [class="obs"] 5
+assign [class="discord"] 8
+assign [class="Anydesk"] 9
+assign [class="Free Download Manager"] 10
+assign [class="qBittorrent"] 10
+assign [class="qBittorrent"] 10
+assign [class="parsecd"] 11
+assign [class="Moonlight"] 12
+assign [class="com.moonlight_stream.Moonlight"] 12
+for_window [class="com.moonlight_stream.Moonlight"] floating disable
+
+# Force xfreerdp to not float
+for_window [class="xfreerdp"] floating disable
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym Left resize shrink width 2 px or 2 ppt
+        bindsym Down resize grow height 2 px or 2 ppt
+        bindsym Up resize shrink height 2 px or 2 ppt
+        bindsym Right resize grow width 2 px or 2 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+	bindsym Return mode "default";
+	bindsym Escape mode "default";
+	bindsym $mod+r mode "default";
+}
+
+bindsym $mod+r mode "resize";
+
