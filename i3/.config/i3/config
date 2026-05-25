@@ -13,7 +13,7 @@ for_window [class=".*"] border pixel 4
 
 # Wallpaper
 # yuri! yay!
-exec_always --no-startup-id feh --bg-fill $HOME/.config/i3/wallpaper/misua-casual.jpg
+exec_always --no-startup-id feh --bg-fill $HOME/.config/i3/wallpapers/misua-casual.jpg
 
 # === THEME CORE ===
 
