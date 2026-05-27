@@ -67,13 +67,13 @@ exec_always --no-startup-id xset dpms 0 0 120
 exec_always --no-startup-id xset s off
 
 # Auto start applications
-exec --no-startup-id kitty bash -lc "fastfetch; exec zsh"
+exec --no-startup-id ghostty -e bash -lc "fastfetch; exec zsh"
 exec --no-startup-id anydesk
 exec --no-startup-id qbittorrent
 
 # Apps
 bindsym $mod+e exec nautilus
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec ghostty
 bindsym $mod+space exec rofi -show drun
 bindsym $mod+n exec zen-browser
 bindsym $mod+Shift+n exec zen-browser --private-window
