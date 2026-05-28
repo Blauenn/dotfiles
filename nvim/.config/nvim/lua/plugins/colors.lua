@@ -4,9 +4,10 @@ end
 
 return {
     {
-	"folke/tokyonight.nvim",
+	"catppuccin/nvim",
+	name = "catppuccin",
 	config = function()
-	    vim.cmd.colorscheme "tokyonight"
+	    vim.cmd.colorscheme "catppuccin-mocha"
 	    enable_transparency()
 	end
     },

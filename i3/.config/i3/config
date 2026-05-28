@@ -1,5 +1,5 @@
 # Screen
-exec_always --no-startup-id xrandr --output DP-2 --mode 1920x1080 --rate 200
+exec_always --no-startup-id xrandr --output DP-0 --mode 1920x1080 --rate 200
 
 # Modifier key
 set $mod Mod4
