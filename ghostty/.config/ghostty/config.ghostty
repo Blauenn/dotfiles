@@ -13,4 +13,6 @@ window-decoration = server
 cursor-style = bar
 cursor-style-blink = true
 
+working-directory = ~/
+window-inherit-working-directory = false
 shell-integration = zsh
