@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)              -- hover docs
 
     -- Diagnostics
-    vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts)  -- show error
+    vim.keymap.set("n", "<leader>we", vim.diagnostic.open_float, opts)  -- show error
     vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)          -- prev error
     vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)          -- next error
 

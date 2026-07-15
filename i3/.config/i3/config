@@ -1,5 +1,5 @@
 # Screen
-exec_always --no-startup-id xrandr --output DP-0 --mode 1920x1080 --rate 200
+exec_always --no-startup-id xrandr --output DP-2 --mode 1920x1080 --rate 200
 
 # Modifier key
 set $mod Mod4
@@ -63,8 +63,9 @@ bindsym $mod+Shift+q		kill
 bindsym $mod+Shift+space	floating toggle
 
 # Turn off screen after 2 minutes of inactivity
+exec_always --no-startup-id xset s 120 120
+exec_always --no-startup-id xset +dpms
 exec_always --no-startup-id xset dpms 0 0 120
-exec_always --no-startup-id xset s off
 
 # Auto start applications
 exec --no-startup-id ghostty -e bash -lc "fastfetch; exec zsh"
