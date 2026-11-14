@@ -1,16 +1,17 @@
 return {
-    "stevearc/conform.nvim",
-    opts = {
-	format_on_save = {
-	    timeout_ms = 500,
-	    lsp_fallback = true,
-	},
-	formatters_by_ft = {
-	    lua = { "stylelua" },
-	    javascript = { " " },
-	    typescript = { " " },
-	    typescriptreact = { " " },
-	    html = { " " },
-	},
+  "stevearc/conform.nvim",
+  opts = {
+    format_on_save = {
+      timeout_ms = 500,
+      lsp_fallback = true,
     },
+    formatters_by_ft = {
+      lua = { "stylua" },
+      javascript = { "prettier" },
+      typescript = { "prettier" },
+      typescriptreact = { "prettier" },
+      html = { "prettier" },
+    },
+  },
 }
+

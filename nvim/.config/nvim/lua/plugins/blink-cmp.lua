@@ -3,26 +3,42 @@ return {
     version = "1.*",
 
     opts = {
-	keymap = {
-	    preset = "default",
-	},
+        keymap = {
+            preset = "default",
+	    ["<CR>"] = { "accept", "fallback" },
+        },
 
-	apperance = {
-	    nerd_font_variant = "mono",
-	},
+        appearance = {
+            nerd_font_variant = "mono",
+        },
 
-	completion == {
+        completion = {
+	    list = {
+		selection = {
+		    preselect = true,
+		},
+	    },
 	    documentation = {
 		auto_show = false,
 	    },
-	},
+	    menu = {
+		draw = {
+		    columns = {
+			{ "label", "label_description", gap = 1 },
+			{ "kind_icon", "kind" },
+		    },
+		},
+	    },
+        },
 
-	sources = {
-	    default = { "lsp", "path", "snippets", "buffer" },
-	},
+        sources = {
+            default = { "lsp", "path", "snippets", "buffer"},
+	    
+        },
 
-	fuzzy = {
-	    implementation = "prefer_rust_with_warning"
-	},
+        fuzzy = {
+            implementation = "prefer_rust_with_warning",
+        },
     },
 }
+
